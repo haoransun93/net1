@@ -16,7 +16,8 @@ enum Command {
 	GET,
 
 	QUIT,
-	LIST, 
+	LIST,
+	SERVER_RESET
 };
 
 enum TransferState {
@@ -33,6 +34,7 @@ typedef struct
 {
 	char hostname[HOSTNAME_LENGTH];
 	char filename[FILENAME_LENGTH];
+	char response[RESP_LENGTH];
 	Command cmd;
 	TransferState stt;
 

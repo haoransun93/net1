@@ -145,7 +145,7 @@ void TcpThread::run() //cs: Server socket
 void TcpThread::server_cmd_file_name()
 {
 	FILE * file;
-	fopen_s(&file, reqp->filename, "a");
+	fopen_s(&file, reqp->filename, "r");
 
 	if (file == NULL){
 		sprintf_s(resp.response, "FILE DOES NOT EXISTS \r\n");
@@ -172,7 +172,20 @@ void TcpThread::server_cmd_file_list()
 
 void TcpThread::server_cmd_file_put()
 {
-	printf("PUT TO SERVER ");
+	FILE * file;
+	fopen_s(&file, "transfer_post.txt", "a");
+	fputs(reqp->response, file);
+	fclose(file);
+
+	if (reqp->stt == SEND_COMPLETE){
+		resp.cmd = SERVER_RESET;
+		resp.stt = SEND_COMPLETE;
+	}
+	else {
+		resp.stt = SEND;
+		resp.cmd = PUT;
+	}
+	server_send_msg();
 }
 
 void TcpThread::server_cmd_file_get()

@@ -22,7 +22,7 @@ class TcpClient
 	char * type;
 	bool transferring = false;
 	Command state;
-
+	char put_filename[20];
 	//char * filename;
 
 public:

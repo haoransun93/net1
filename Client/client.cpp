@@ -200,6 +200,9 @@ int TcpClient::user_input_cmd()
 	else if (cmd == 2) {
 		state = PUT;
 		while (user_input_filename() == 1);
+		sprintf_s(put_filename, req.filename);
+		req.cmd = state;
+		req.stt = SEND;
 		//set state
 		transfer();
 	}
@@ -242,11 +245,13 @@ bool TcpClient::transfer()
 		client_msg_send();
 		client_msg_receive();
 
-		if (respp->cmd == QUIT){
+		if (respp->cmd == SERVER_RESET){ //DO NOTHING;
+		}
+		else if (respp->cmd == QUIT){
 			printf(respp->response);
 		}
 		else if (respp->cmd == PUT){
-			printf(respp->response);
+			client_cmd_put();
 		}
 		else if (respp->cmd == GET){
 			client_cmd_get();
@@ -271,6 +276,33 @@ void TcpClient::client_cmd_get()
 	fputs(respp->response, file);
 	fclose(file);
 	file = NULL;
+}
+
+void TcpClient::client_cmd_put()
+{
+	printf("PUT TO SERVER ");
+	FILE * file;
+	fopen_s(&file, put_filename, "r");
+	if (file == NULL)
+	{
+		printf("FILE IS BROKEN");
+	}
+	while (fgets(req.response, sizeof(req.response), file)){
+		req.cmd = PUT;
+		if (feof(file)) {
+			req.stt = SEND_COMPLETE;
+			client_msg_send();
+			return;
+		}
+		else {
+			req.stt = SEND;
+			client_msg_send();
+		}
+		client_msg_receive();
+	}
+	req.stt = SEND_COMPLETE;
+	client_msg_send();
+	return;
 }
 
 ////////////////////////////////////////////

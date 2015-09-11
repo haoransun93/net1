@@ -1,0 +1,15 @@
+Dear Ms Thompson,
+
+My name is Haoran Sun, currently at my third year in computer science at Concordia. Hope to write this to convince you that I'm the best candidate for this position. To the team at Ericsson, I can bring my interest, dedication, as well as my capacity for learning.
+
+My interest in machine learning and statistics extends back to my first internship at CN Rail. In this internship, I was involved in working with large data sets, and taking machine generated data to better understand the business of moving trains. 
+
+Dedication and effort is an important part to developing expertise, and my academic record shows my dedication towards pursuing excellence in computer science. Having developed a good foundation in mathematics, statistics and systems hardwork, data science is an ideal field to combine these subjects together and to use this knowledge to solve meaningful and challenging problems. In addition, my current studies involve parallel computing softwares, such as Hadoop, MapReduce, as well as the theory needed to understand how to compute large data sets. 
+
+Above all, capacity for learning is the most valuable aspect I can bring to the team at Ericsson. It is exciting to enter into difficult tasks, and to learn from much more experienced and intelligent people. In addition, I'm interested in pursuing team members and mentors. In addition, I'm interested in graduate studies towards the area of big data, and this internship would provide me with much hands on experience, as well as an understanding of industry conditions to better fine-tune the path I will take when selecting topics for further study.
+
+Thanks for taking the time to read this letter. Hope you will consider my application. 
+
+Sincerely,
+
+Haoran.
