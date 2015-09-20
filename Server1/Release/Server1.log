@@ -1,5 +1,6 @@
-﻿Build started 11/09/2015 16:44:36.
+﻿Build started 11/09/2015 17:02:37.
      1>Project "C:\Users\H\Documents\GitHub\net1\Server1\Server1.vcxproj" on node 3 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\users\h\documents\github\net1\release\server.pdb' because it is being used by another process.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt server.cpp Thread.cpp
          server.cpp
@@ -14,4 +15,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.72
+Time Elapsed 00:00:00.59

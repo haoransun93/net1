@@ -210,7 +210,7 @@ int TcpClient::user_input_cmd()
 	//list client
 	else if (cmd == 3) {
 		//list
-		//transfer();
+		client_cmd_list();
 	}
 	else if (cmd == 4) {
 		//set state
@@ -256,8 +256,9 @@ bool TcpClient::transfer()
 		else if (respp->cmd == GET){
 			client_cmd_get();
 		}
-		else if (respp->cmd == LIST){
+		else if (respp->cmd == LIST){ //SERVER LIST TO CLIENT
 			printf(respp->response);
+			printf("\r\n");
 		}
 
 		if (respp->stt == SEND_COMPLETE){
@@ -286,6 +287,9 @@ void TcpClient::client_cmd_put()
 	if (file == NULL)
 	{
 		printf("FILE IS BROKEN");
+		req.stt = SEND_COMPLETE;
+		client_msg_send();
+		return;
 	}
 	while (fgets(req.response, sizeof(req.response), file)){
 		req.cmd = PUT;
@@ -303,6 +307,22 @@ void TcpClient::client_cmd_put()
 	req.stt = SEND_COMPLETE;
 	client_msg_send();
 	return;
+}
+
+void TcpClient::client_cmd_list(){
+	system("dir /b > _dir.txt");
+	FILE * file;
+	fopen_s(&file, "_dir.txt", "r");
+	if (file == NULL)
+	{
+		printf("FILE IS BROKEN");
+		return;
+	}
+	while (fgets(req.response, sizeof(req.response), file)){
+		printf(req.response);
+		printf("\r\n");
+	}
+	fclose(file);
 }
 
 ////////////////////////////////////////////

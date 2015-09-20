@@ -167,7 +167,36 @@ void TcpThread::server_cmd_file_name()
 
 void TcpThread::server_cmd_file_list()
 {
-	printf("LIST OF FILES ");
+	system("dir /b > _dir.txt");
+
+	FILE * file;
+	fopen_s(&file, "_dir.txt", "r");
+	if (file == NULL)
+	{
+		printf("FILE IS BROKEN");
+		resp.stt = SEND_COMPLETE;
+		server_send_msg();
+		return;
+	}
+
+	while (fgets(resp.response, sizeof(resp.response), file)){
+		resp.cmd = LIST;
+
+		if (feof(file)) {
+			resp.stt = SEND_COMPLETE;
+			server_send_msg();
+			return;
+		}
+		else {
+			resp.stt = SEND;
+			server_send_msg();
+		}
+		server_receive_msg();
+	}
+	fclose(file);
+	resp.stt = SEND_COMPLETE;
+	server_send_msg();
+	return;
 }
 
 void TcpThread::server_cmd_file_put()

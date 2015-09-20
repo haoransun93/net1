@@ -1,0 +1,9 @@
+Client.exe
+Client.pdb
+dir.txt
+Server.exe
+Server.pdb
+SHIT.txt
+shitty_server
+test_client
+test_server
